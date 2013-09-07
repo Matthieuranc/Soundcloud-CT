@@ -16,12 +16,32 @@
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
 		
 		<script type="text/javascript" src="js/jquery.js"></script>
+		<script src="http://connect.soundcloud.com/sdk.js"></script>
+		
+		<script>
+		$(document).ready(function() {
+			SC.initialize({
+			    client_id: "e48d9f157fc6f6d88127b04d17816403"
+			});
+			$("#loadTracks").click(function() {
+			    SC.get("/tracks", {limit: 1}, function(tracks, error) {
+					if(error){
+					      alert("Error: " + error.message);
+					 } else {
+					      var track = tracks[0];
+						  SC.oEmbed(track.uri, document.getElementById("track"));
+					 }
+				});
+			});
+		});
+		</script>
 		
 	</head>
 
 
 	<body>
-		
+		<input type="button" id="loadTracks" class="button big" value="Get hottest track" />
+		<div id="track"></div>
 	</body>
 </html>
 
