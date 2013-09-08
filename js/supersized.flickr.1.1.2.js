@@ -16,7 +16,6 @@
 	
 	//Resize image on ready or resize
 	$.supersized = function( options ) {
-		
 		//Default settings
 		var settings = {
 			
@@ -54,19 +53,18 @@
 			set                     :   '###', 	//Flickr set ID (found in URL)
 			user					:	'###',	//Flickr user ID (http://idgettr.com/)
 			group					:	'###', 	//Flickr group ID (http://idgettr.com/)
-			tags			: '###,###',    //Comma separated tags
+			tags					: '###,###',    //Comma separated tags
 			total_slides			:	100,	//How many pictures to pull (Between 1-500)
 			image_size              :   'z',	//Flickr image Size - t,s,m,z,b  (Details: http://www.flickr.com/services/api/misc.urls.html)
 			slides 					: 	[{}],	//Initiate slides array
-			sort_by			:    1,		//1-Date Posted, 2-Date Taken, 3-Interestingness
-			sort_direction		:    0,		//0-descending, 1-ascending
+			sort_by					:    1,		//1-Date Posted, 2-Date Taken, 3-Interestingness
+			sort_direction			:    0,		//0-descending, 1-ascending
     	
     		/**
     		FLICKR API KEY
     		NEED TO GET YOUR OWN -- http://www.flickr.com/services/apps/create/ 
     		**/
 			api_key					:	'#############'		//Flickr API Key
-			
     	};
 		
 		//Default elements
@@ -206,6 +204,7 @@
 				
 				/***End load initial images***/
 				flickrLoaded = true;
+				loadFunc();
     		}//End AJAX Callback 
     	 });
 

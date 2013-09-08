@@ -34,6 +34,12 @@
 						SC.oEmbed(track.uri, document.getElementById("track"));
 						var taglist = track.tag_list;
 						var tagSep = taglist.match(/(?:[^\s"]+|"[^"]*")+/g);
+						var tagList = "";
+						for(var tagIndex in tagSep)
+						{
+							tagList = tagList + tagSep[tagIndex].replace('"', '').replace('"', '') + ",";
+						}
+						getPics(tagList);
 					 }
 				});
 			});
@@ -41,8 +47,7 @@
 		</script>
 		
 		<script type="text/javascript">
-
-		
+		function getPics(tagList) {
 			jQuery(function($){
 				$.supersized({
 					
@@ -80,7 +85,7 @@
 					set                     :   '', 				//Flickr set ID (found in URL)
 					user					:	'',				//Flickr user ID (http://idgettr.com/)
 					group					:	'', 				//Flickr group ID (http://idgettr.com/)
-					tags					:   'nin',    //Comma separated tags
+					tags					:   tagList,    //Comma separated tags
 
 					total_slides			:	100,					//How many pictures to pull (Between 1-500)
 					image_size              :   'b', 					//Flickr Image Size - t,s,m,z,b  (Details: http://www.flickr.com/services/api/misc.urls.html)
@@ -95,7 +100,7 @@
 
 				});
 			});
-
+		}
 		</script>
 		
 	</head>
