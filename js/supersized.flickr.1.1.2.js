@@ -205,6 +205,7 @@
 				/***End load initial images***/
 				flickrLoaded = true;
 				loadFunc();
+				resizenow();
     		}//End AJAX Callback 
     	 });
 
