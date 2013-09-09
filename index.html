@@ -32,12 +32,16 @@
 					      alert("Error: " + error.message);
 					 } else {
 					    var track = tracks[1];
-						SC.oEmbed(track.uri, document.getElementById("track"));
+						SC.oEmbed(track.uri, {auto_play:true}, document.getElementById("track"));
 						var taglist = track.tag_list;
 						var tagSep = taglist.match(/(?:[^\s"]+|"[^"]*")+/g);
 						var tagList = "";
 						tagList = tagList + tagSep[0].replace('"', '').replace('"', '');
 						getPics(tagList);
+						
+						var txt = 'You looked for "'+genre+'" which is related to "'+tagList+'" on Flickr.';
+						console.log(txt);
+						$("#text").html(txt);
 					 }
 				});
 			});
@@ -145,10 +149,11 @@
 			</div>
 		</div>
 		<form name="form1">
-			<input type="text" placeholder="Ex: hip hop" name="input" value=""><BR>
-				<input type="button" id="loadTracks" name="keyword" value="Search" onClick="controle(form1)">
+			<input style="position:relative; display: block; margin: 10px auto;" type="text" placeholder="Ex: hip hop" name="input" value="">
+				<input style="position:relative; display: block; margin: 0 auto;" type="button" name="bouton" value="Look for a specific tag!" id="loadTracks" onClick="controle(form1)">
 		</form>
-		<div id="track"></div>
+		<div style="background:white; width:500px; margin: 10px auto; font:15px Helvetica, Arial, sans-serif; text-align:center;" id="text"></div>
+		<div style="position:relative; width:500px; display: block; margin: 10px auto;" id="track"></div>
 	</body>
 </html>
 
