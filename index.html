@@ -19,13 +19,21 @@
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script src="http://connect.soundcloud.com/sdk.js"></script>
 		<script type="text/javascript" src="js/supersized.flickr.1.1.2.js"></script>
+		<script type="text/javascript" src="js/jquery.form.js"></script>
 		
 		<script>
 		$(document).ready(function() {
 			SC.initialize({
 			    client_id: "e48d9f157fc6f6d88127b04d17816403"
 			});
+			$('#form1').ajaxForm(function() { 
+				loadTracks();
+			}); 
 			$("#loadTracks").click(function() {
+				loadTracks();
+			});
+			
+			function loadTracks() {
 				var genre = controle();
 			    SC.get("/tracks", {limit: 10, tags:genre}, function(tracks, error) {
 					if(error){
@@ -46,7 +54,7 @@
 						$("#text").html(txt);
 					 }
 				});
-			});
+			}
 		});
 		</script>
 		
@@ -150,9 +158,9 @@
 
 			</div>
 		</div>
-		<form name="form1">
-			<input style="position:relative; display: block; margin: 10px auto;" type="text" placeholder="Ex: hip hop" name="input" value="">
-				<input style="position:relative; display: block; margin: 0 auto;" type="button" name="bouton" value="Look for a specific tag!" id="loadTracks" onClick="controle(form1)">
+		<form  id="form1" name="form1">
+			<input id="form" style="height:20px; width:500px; font: 15px Helvetica, Arial, sans-serif; position:relative; display: block; margin: 10px auto;" type="text" placeholder="Ex: hip hop" name="input" value="">
+				<input style="font: 15px Helvetiva, Arial, sans-serif; position:relative; display: block; margin: 0 auto;" type="button" name="bouton" value="Look for a specific tag!" id="loadTracks" onClick="controle(form1)">
 		</form>
 		<div style="background:white; width:500px; margin: 10px auto; font:15px Helvetica, Arial, sans-serif; text-align:center;" id="text"></div>
 		<div style="position:relative; width:500px; display: block; margin: 10px auto;" id="track"></div>
